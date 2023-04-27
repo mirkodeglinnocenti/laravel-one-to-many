@@ -7,6 +7,14 @@
         Progetto: {{ $project['title'] }}
     </h1>
 
+    <h6>tipologia:</h6>
+
+    @if($project->type)
+        <mark class="d-inline-block mb-3">{{ $project->type->type }}</mark>
+    @else
+        <span class="d-inline-block mb-3">Non specificato</span>
+    @endif
+
     <div>
         <h6>Descrizione:</h6>
         <p>{{ $project['description'] }}</p>

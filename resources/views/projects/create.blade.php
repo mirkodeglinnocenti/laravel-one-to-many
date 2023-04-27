@@ -11,11 +11,24 @@
     <form class="row g-3" action="{{ route('projects.store') }}" method="POST">
         @csrf
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <label for="title" class="form-label">titolo:</label>
           <input type="text" class="form-control" id="title" name="title" value="{{ old('title') ?? "" }}">
         </div>
         @error('title')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+
+        <div class="col-md-12">
+            <label for="type_id" class="form-label">tipologia:</label>
+            <select class="form-select @error('type_id') is-invalid @enderror" id="type_id" name="type_id" aria-label="Default select example">
+                <option>Seleziona una tipologia</option>
+                @foreach($types as $type)
+                    <option @selected(old('type_id') == $type->id) value="{{ $type->id }}"> {{ $type->type }} </option>
+                @endforeach
+            </select>
+        </div>
+        @error('type_id')
             <div class="text-danger">{{ $message }}</div>
         @enderror
 

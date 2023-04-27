@@ -21,6 +21,19 @@
         @enderror
 
         <div class="col-md-12">
+            <label for="type_id" class="form-label">tipologia:</label>
+            <select class="form-select @error('type_id') is-invalid @enderror" id="type_id" name="type_id" aria-label="Default select example">
+                <option>Seleziona una tipologia</option>
+                @foreach($types as $type)
+                    <option @selected(old('type_id') == $type->id) value="{{ $type->id }}"> {{ $type->type }} </option>
+                @endforeach
+            </select>
+        </div>
+        @error('type_id')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+
+        <div class="col-md-12">
             <label for="description" class="form-label">descrizione:</label>
             <textarea class="form-control" id="description" name="description" value="">{{ old('description', $project->description)}}</textarea>
         </div>
